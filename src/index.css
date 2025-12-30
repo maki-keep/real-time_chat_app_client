@@ -9,10 +9,12 @@
   --app-bg: #f3f8ff;
   --app-text: #0f1724;
   --app-muted: #6b7280;
-  --app-card: #ffffff;
+  --app-card: #dce0e4;
   --app-btn: #f8fbff;
   --app-btn-border: transparent;
-  --app-accent: #647bff;
+  --app-accent: #6b7cff;
+  --app-accent-text: #ffffff;
+  --app-error-text: #b3262d;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,10 +25,12 @@
     --app-bg: #0b0f14;
     --app-text: #e6eef8;
     --app-muted: #94a3b8;
-    --app-card: #0f1418;
+    --app-card: #1a2228;
     --app-btn: #0f1418;
     --app-btn-border: transparent;
     --app-accent: #6b7cff;
+    --app-accent-text: #ffffff;
+    --app-error-text: #fb2c36;
   }
 }
 
@@ -38,4 +42,36 @@ body {
   margin: 0;
   background-color: var(--app-bg);
   color: var(--app-text);
+}
+
+.bg-app-accent {
+  background-color: var(--app-accent);
+}
+
+.bg-app-btn {
+  background-color: var(--app-btn);
+}
+
+.bg-app-card {
+  background-color: var(--app-card);
+}
+
+.border-app-accent {
+  border-color: var(--app-accent);
+}
+
+.border-app-btn-border {
+  border-color: var(--app-btn-border);
+}
+
+.text-app-accent-text {
+  color: var(--app-accent-text);
+}
+
+.text-app-error-text {
+  color: var(--app-error-text);
+}
+
+.text-app-muted {
+  color: var(--app-muted);
 }

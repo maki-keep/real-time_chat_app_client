@@ -13,7 +13,9 @@ module.exports = {
         'app-card': 'var(--app-card)',
         'app-btn': 'var(--app-btn)',
         'app-btn-border': 'var(--app-btn-border)',
-        'app-accent': 'var(--app-accent)'
+        'app-accent': 'var(--app-accent)',
+        'app-accent-text': 'var(--app-accent-text)',
+        'app-error-text': 'var(--app-error-text)'
       }
     }
   },
