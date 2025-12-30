@@ -10,6 +10,7 @@ module.exports = {
         'app-bg': 'var(--app-bg)',
         'app-text': 'var(--app-text)',
         'app-muted': 'var(--app-muted)',
+        'app-muted-bg': 'var(--app-muted-bg)',
         'app-card': 'var(--app-card)',
         'app-btn': 'var(--app-btn)',
         'app-btn-border': 'var(--app-btn-border)',

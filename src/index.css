@@ -9,7 +9,8 @@
   --app-bg: #f3f8ff;
   --app-text: #0f1724;
   --app-muted: #6b7280;
-  --app-card: #dce0e4;
+  --app-muted-bg: #bfc5d0;
+  --app-card: #e1e5e8;
   --app-btn: #f8fbff;
   --app-btn-border: transparent;
   --app-accent: #6b7cff;
@@ -25,6 +26,7 @@
     --app-bg: #0b0f14;
     --app-text: #e6eef8;
     --app-muted: #94a3b8;
+    --app-muted-bg: #4a4f56;
     --app-card: #1a2228;
     --app-btn: #0f1418;
     --app-btn-border: transparent;
@@ -56,12 +58,30 @@ body {
   background-color: var(--app-card);
 }
 
+.bg-app-muted-bg {
+  background-color: var(--app-muted-bg);
+}
+
+.disabled\:bg-app-muted-bg {
+  &:disabled {
+    background-color: var(--app-muted-bg);
+  }
+}
+
 .border-app-accent {
   border-color: var(--app-accent);
 }
 
 .border-app-btn-border {
   border-color: var(--app-btn-border);
+}
+
+.border-app-card {
+  border-color: var(--app-card);
+}
+
+.border-app-text {
+  border-color: var(--app-text);
 }
 
 .text-app-accent-text {
@@ -74,4 +94,10 @@ body {
 
 .text-app-muted {
   color: var(--app-muted);
+}
+
+.disabled\:text-app-muted {
+  &:disabled {
+    color: var(--app-muted);
+  }
 }

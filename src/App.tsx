@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useChatContext } from './context'
 import Home from './home/Home'
 import Login from './login/Login'
 import Signup from './signup/Signup'
 import Chat from './chat/Chat'
 
 function App() {
-  const { session } = useChatContext()
   return (
     <Router>
       <Routes>
@@ -24,10 +22,7 @@ function App() {
         />
         <Route
           path="/chat"
-          element={session
-            ? <Chat />
-            : <Login />
-          }
+          element={<Chat />}
         />
       </Routes>
     </Router>

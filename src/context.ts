@@ -8,10 +8,11 @@ type Session = {
   username: string
 }
 
-// read-only session and write-only token setter
+// read-only session to children components
 type ChatContextValue = {
   session?: Session
   setToken: Dispatch<SetStateAction<string | undefined>>
+  token?: string
 }
 
 const ChatContext = createContext<ChatContextValue | undefined>(undefined)
@@ -43,7 +44,7 @@ const ChatProvider = (props: PropsWithChildren) => {
 
   return createElement(
     ChatContext.Provider,
-    { value: { session, setToken } },
+    { value: { session, setToken, token } },
     props.children
   )
 }
