@@ -1,6 +1,13 @@
 # real-time_chat_app_client
 
-Client that interacts with the Real-Time Chat API.
+Client for the Real-Time Chat API. Made with React and Vite.
+
+## Features
+
+- **/**: Homepage with options to sign up or log in.
+- **/signup**: Create a new account by providing a username and password.
+- **/login**: Authenticate with an existing username and password.
+- **/chat**: Create or join conversations, and send messages.
 
 ## Install
 
@@ -29,3 +36,30 @@ npm run build
 ```bash
 npm run preview
 ```
+
+## Dependencies
+
+App dependencies:
+
+- @tailwindcss/vite: ^4.1.18
+- jwt-decode: ^4.0.0
+- react: ^19.2.0
+- react-dom: ^19.2.0
+- react-router-dom: ^7.11.0
+
+Development dependencies:
+
+- @eslint/js: ^9.39.1
+- @types/node: ^24.10.1
+- @types/react: ^19.2.5
+- @types/react-dom: ^19.2.3
+- @vitejs/plugin-react: ^5.1.1
+- autoprefixer: ^10.4.23
+- eslint: ^9.39.1
+- eslint-plugin-react-hooks: ^7.0.1
+- eslint-plugin-react-refresh: ^0.4.24
+- globals: ^16.5.0
+- tailwindcss: ^4.1.18
+- typescript: ~5.9.3
+- typescript-eslint: ^8.46.4
+- vite: ^7.2.4
