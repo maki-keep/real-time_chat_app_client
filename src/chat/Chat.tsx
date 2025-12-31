@@ -198,7 +198,7 @@ function Chat() {
 
   return (
     <Layout>
-      <div className="flex-1 grid grid-cols-3">
+      <div className="flex flex-1 flex-row grid-cols-3 overflow-auto w-full">
         <div className="border-app-card border-r col-span-1 flex flex-col">
           <div className="flex-1 overflow-auto p-4">
             {conversations.length === 0 && (
@@ -237,7 +237,7 @@ function Chat() {
             </button>
           </div>
         </div>
-        <div className="col-span-2 flex flex-col">
+        <div className="col-span-2 flex flex-1 flex-col">
           <div className="flex-1 overflow-auto p-4">
             {!activeConversation && (
               <div className="text-app-muted text-sm">{loadingMessages
