@@ -1,6 +1,8 @@
-# real-time_chat_app_client
+# Real-Time Chat App Client
 
 Client for the Real-Time Chat API. Made with React and Vite.
+
+Live website: https://maki-keep-real-time-chat-app-client.netlify.app
 
 ## Features
 
@@ -41,6 +43,9 @@ npm run preview
 
 App dependencies:
 
+- @fortawesome/fontawesome-svg-core: ^7.1.0
+- @fortawesome/free-brands-svg-icons: ^7.1.0
+- @fortawesome/react-fontawesome: ^3.1.1
 - @tailwindcss/vite: ^4.1.18
 - jwt-decode: ^4.0.0
 - react: ^19.2.0

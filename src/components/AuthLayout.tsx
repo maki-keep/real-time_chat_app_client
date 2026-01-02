@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Layout from './Layout'
-import viteLogo from '/vite.svg'
-import { useChatContext } from './context'
 import { useNavigate } from 'react-router-dom'
-import api from './api/api'
+import api from '../api/api'
+import { useChatContext } from '../context'
+import AuthorLink from './AuthorLink'
+import Layout from './Layout'
 
 type AuthLayoutProps = {
   path: '/signup' | '/login'
@@ -46,13 +46,6 @@ function AuthLayout({
   return (
     <Layout>
       <div className="flex gap-8 items-center">
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img
-            src={viteLogo}
-            className="h-12 p-3"
-            alt="Vite logo"
-          />
-        </a>
         <h1 className="font-semibold text-2xl">Real-Time Chat App</h1>
       </div>
       <div className="bg-app-card flex flex-col gap-8 justify-center p-8 rounded-lg shadow-md w-96">
@@ -86,6 +79,7 @@ function AuthLayout({
           {loading ? 'Loading...' : error || ''}
         </div>
       </div>
+      <AuthorLink />
     </Layout>
   )
 }

@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom'
-import Layout from '../Layout'
-import viteLogo from '/vite.svg'
+import AuthorLink from '../components/AuthorLink'
+import Layout from '../components/Layout'
 
 function Home() {
   return (
     <Layout>
       <div className="flex gap-8 items-center">
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img
-            src={viteLogo}
-            className="h-24 p-6"
-            alt="Vite logo"
-          />
-        </a>
+        <h1 className="font-semibold text-4xl">Real-Time Chat App</h1>
       </div>
-      <h1 className="font-semibold text-4xl">Real-Time Chat App</h1>
       <div className="bg-app-card flex flex-col gap-8 justify-center items-stretch p-8 rounded-lg shadow-md w-72">
         <Link to="/login" style={{ display: 'contents'}}>
           <button className="bg-app-btn border border-app-btn-border cursor-pointer focus:outline-none focus-visible:ring-4 font-medium px-8 py-4 rounded-lg text-xl">
@@ -27,9 +20,7 @@ function Home() {
           </button>
         </Link>
       </div>
-      <p className="mt-4 text-app-muted">
-        Powered by Vite.
-      </p>
+      <AuthorLink />
     </Layout>
   )
 }

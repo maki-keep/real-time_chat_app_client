@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useChatContext } from '../context'
 import api from '../api/api'
-import Layout from '../Layout'
+import Layout from '../components/Layout'
 
 type Member = {
   id: string
