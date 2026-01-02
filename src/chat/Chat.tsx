@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useChatContext } from '../context'
 import api from '../api/api'
@@ -146,7 +147,10 @@ function Chat() {
     }
   }
 
-  const submitCreateConversation = async () => {
+  const submitCreateConversation = async (e: FormEvent<HTMLFormElement>) => {
+    // prevent page reload
+    e.preventDefault()
+
     if (!formConversationTitle) return
 
     setCreatingConversation(true)
@@ -174,7 +178,10 @@ function Chat() {
     }
   }
 
-  const submitSendMessage = async () => {
+  const submitSendMessage = async (e: FormEvent<HTMLFormElement>) => {
+    // prevent page reload
+    e.preventDefault()
+
     if (!activeConversation || !formMessageContent) return
 
     setSendingMessage(true)
@@ -221,20 +228,37 @@ function Chat() {
             </ul>
           </div>
           <div className="bg-app-card flex gap-2 items-center p-4">
-            <input
-              className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted flex-1 px-3 py-2 rounded-lg"
-              placeholder="New conversation title"
-              value={formConversationTitle}
-              onChange={e => setFormConversationTitle(e.target.value)}
-              disabled={creatingConversation}
-            />
-            <button
-              className="bg-app-accent cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg text-app-accent-text"
-              onClick={submitCreateConversation}
-              disabled={creatingConversation}
+            <form
+              action="#"
+              aria-busy={creatingConversation}
+              className="flex flex-1 gap-2"
+              onSubmit={submitCreateConversation}
             >
-              Create
-            </button>
+              <label
+                className="sr-only"
+                htmlFor="conversation-title"
+              >
+                New conversation title
+              </label>
+              <input
+                className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted flex-1 px-3 py-2 rounded-lg"
+                disabled={creatingConversation}
+                id="conversation-title"
+                name="conversation-title"
+                onChange={e => setFormConversationTitle(e.target.value)}
+                placeholder="New conversation title"
+                required
+                type="text"
+                value={formConversationTitle}
+              />
+              <button
+                className="bg-app-accent cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg text-app-accent-text"
+                disabled={creatingConversation}
+                type="submit"
+              >
+                Create
+              </button>
+            </form>
           </div>
         </div>
         <div className="col-span-2 flex flex-1 flex-col">
@@ -255,20 +279,37 @@ function Chat() {
             </ul>
           </div>
           <div className="bg-app-card border-app-card border-t flex gap-2 items-center p-4">
-            <input
-              className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted flex-1 px-3 py-2 rounded-lg"
-              placeholder="Type a message"
-              value={formMessageContent}
-              onChange={e => setFormMessageContent(e.target.value)}
-              disabled={!activeConversation || sendingMessage}
-            />
-            <button
-              className="bg-app-accent cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg text-app-accent-text"
-              onClick={submitSendMessage}
-              disabled={!activeConversation || sendingMessage}
+            <form
+              action="#"
+              aria-busy={!activeConversation || sendingMessage}
+              className="flex flex-1 gap-2"
+              onSubmit={submitSendMessage}
             >
-              Send
-            </button>
+              <label
+                className="sr-only"
+                htmlFor="message-content"
+              >
+                Type a message
+              </label>
+              <input
+                className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted flex-1 px-3 py-2 rounded-lg"
+                disabled={!activeConversation || sendingMessage}
+                id="message-content"
+                name="message-content"
+                onChange={e => setFormMessageContent(e.target.value)}
+                placeholder="Type a message"
+                required
+                type="text"
+                value={formMessageContent}
+              />
+              <button
+                className="bg-app-accent cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg text-app-accent-text"
+                disabled={!activeConversation || sendingMessage}
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
           </div>
         </div>
       </div>

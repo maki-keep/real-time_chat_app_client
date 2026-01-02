@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../api/api'
 import { useChatContext } from '../context'
@@ -7,11 +8,13 @@ import Layout from './Layout'
 
 type AuthLayoutProps = {
   path: '/signup' | '/login'
+  autoCompletePassword: string
   buttonContent: string
 }
 
 function AuthLayout({
   path,
+  autoCompletePassword,
   buttonContent
 }: AuthLayoutProps) {
   const { setToken } = useChatContext()
@@ -21,7 +24,10 @@ function AuthLayout({
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const submit = async () => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
+    // prevent page reload
+    e.preventDefault()
+
     setError(null)
     setLoading(true)
 
@@ -49,32 +55,59 @@ function AuthLayout({
         <h1 className="font-semibold text-2xl">Real-Time Chat App</h1>
       </div>
       <div className="bg-app-card flex flex-col gap-8 justify-center p-8 rounded-lg shadow-md w-96">
-        <input
-          className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          disabled={loading}
-        />
-        <input
-          className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          disabled={loading}
-        />
-        <button
-          className="bg-app-accent border border-app-btn-border cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-8 py-4 rounded-lg text-app-accent-text text-xl"
-          onClick={submit}
-          disabled={loading}
+        <form
+          action="#"
+          aria-busy={loading}
+          className="flex flex-col gap-8"
+          onSubmit={submit}
         >
-          {buttonContent}
-        </button>
+          <label
+            className="sr-only"
+            htmlFor="username"
+          >
+            Username
+          </label>
+          <input
+            autoComplete="username"
+            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
+            disabled={loading}
+            id="username"
+            name="username"
+            onChange={e => setUsername(e.target.value)}
+            placeholder="username"
+            required
+            type="text"
+            value={username}
+          />
+          <label
+            className="sr-only"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            autoComplete={autoCompletePassword}
+            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
+            disabled={loading}
+            id="password"
+            name="password"
+            onChange={e => setPassword(e.target.value)}
+            placeholder="password"
+            required
+            type="password"
+            value={password}
+          />
+          <button
+            className="bg-app-accent border border-app-btn-border cursor-pointer disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-8 py-4 rounded-lg text-app-accent-text text-xl"
+            disabled={loading}
+            type="submit"
+          >
+            {buttonContent}
+          </button>
+        </form>
         <div
-          role="alert"
           className={`min-h-12 ${error && 'text-app-error-text'} ${loading && 'text-app-muted'} text-center text-lg`}
+          role="alert"
         >
           {loading ? 'Loading...' : error || ''}
         </div>
