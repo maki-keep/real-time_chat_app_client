@@ -45,6 +45,7 @@ App dependencies:
 
 - @fortawesome/fontawesome-svg-core: ^7.1.0
 - @fortawesome/free-brands-svg-icons: ^7.1.0
+- @fortawesome/free-solid-svg-icons: ^7.1.0
 - @fortawesome/react-fontawesome: ^3.1.1
 - @tailwindcss/vite: ^4.1.18
 - jwt-decode: ^4.0.0

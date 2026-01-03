@@ -50,6 +50,10 @@ body {
   background-color: var(--app-accent);
 }
 
+.bg-app-bg {
+  background-color: var(--app-bg);
+}
+
 .bg-app-btn {
   background-color: var(--app-btn);
 }

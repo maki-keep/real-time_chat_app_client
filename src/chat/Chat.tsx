@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useChatContext } from '../context'
 import api from '../api/api'
 import Layout from '../components/Layout'
@@ -54,6 +56,9 @@ function Chat() {
   const [creatingConversation, setCreatingConversation] = useState(false)
   const [addingMember, setAddingMember] = useState(false)
   const [sendingMessage, setSendingMessage] = useState(false)
+
+  // whether conversations sidebar is toggled open
+  const [conversationsSidebarOpen, setConversationsSidebarOpen] = useState(false)
 
   // run on session or token change
   useEffect(() => {
@@ -203,23 +208,37 @@ function Chat() {
     }
   }
 
+  const selectConversation = (conversation: Conversation) => {
+    setActiveConversation(conversation)
+
+    // close conversations sidebar
+    setConversationsSidebarOpen(false)
+  }
+
   return (
     <Layout>
-      <div className="flex flex-1 flex-row grid-cols-3 overflow-auto w-full">
-        <div className="border-app-card border-r col-span-1 flex flex-col">
-          <div className="flex-1 overflow-auto p-4">
+      <div className="flex flex-1 flex-row overflow-auto sm:grid-cols-3 w-full">
+        <div className={`bg-app-card border-app-card border-r ease-in-out fixed flex flex-1 flex-col inset-y-0 max-w-screen overflow-auto right-full sm:static sm:transition-none sm:translate-x-0 sm:w-auto sm:z-auto transition-transform ${conversationsSidebarOpen
+          ? 'translate-x-0'
+          : 'translate-x-full'} z-40`}
+        >
+          <div className="bg-app-bg flex-1 overflow-auto p-4 pt-13 sm:pt-4">
             {conversations.length === 0 && (
-              <div className="text-app-muted text-sm">{loadingConversations
-                ? 'Loading conversations...'
-                : 'No conversations'
-              }</div>
+              <div className="text-app-muted text-center text-sm p-4">
+                {loadingConversations
+                  ? 'Loading conversations...'
+                  : 'No conversations'
+                }
+              </div>
             )}
             <ul className="flex flex-col gap-4">
               {conversations.map(conversation => (
                 <li key={conversation.id}>
                   <button
-                    className={`bg-app-btn border cursor-pointer ${activeConversation === conversation ? 'border-app-text' : 'border-app-btn-border'} p-3 rounded w-full`}
-                    onClick={() => setActiveConversation(conversation)}
+                    className={`bg-app-btn border cursor-pointer ${activeConversation === conversation
+                      ? 'border-app-text'
+                      : 'border-app-btn-border'} p-3 rounded w-full`}
+                    onClick={_e => selectConversation(conversation)}
                   >
                     {conversation.title}
                   </button>
@@ -261,13 +280,27 @@ function Chat() {
             </form>
           </div>
         </div>
-        <div className="col-span-2 flex flex-1 flex-col">
-          <div className="flex-1 overflow-auto p-4">
+        <div className="bg-app-card border-app-card fixed flex gap-4 items-center left-0 rounded-br-lg sm:hidden top-0 z-40">
+          <button
+            type="button"
+            onClick={() => setConversationsSidebarOpen(prev => !prev)}
+            className="p-4 text-app-muted text-sm"
+          >
+            <FontAwesomeIcon icon={faBars} size="1x" />
+          </button>
+        </div>
+        <div className="bg-app-card flex flex-1 flex-col sm:flex-2">
+          <div className="bg-app-card border-app-card border-b flex gap-4 h-13 items-center justify-center">
+            {activeConversation && activeConversation.title}
+          </div>
+          <div className="bg-app-bg flex-1 overflow-auto p-4">
             {!activeConversation && (
-              <div className="text-app-muted text-sm">{loadingMessages
-                ? 'Loading messages...'
-                : 'Select a conversation'
-              }</div>
+              <div className="text-app-muted text-center text-sm p-4">
+                {loadingMessages
+                  ? 'Loading messages...'
+                  : 'Select a conversation'
+                }
+              </div>
             )}
             <ul className="flex flex-col gap-4">
               {activeConversation && messages.map(message => (

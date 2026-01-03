@@ -52,7 +52,9 @@ function AuthLayout({
   return (
     <Layout>
       <div className="flex gap-8 items-center">
-        <h1 className="font-semibold text-2xl">Real-Time Chat App</h1>
+        <h1 className="font-semibold text-2xl">
+          Real-Time Chat App
+        </h1>
       </div>
       <div className="bg-app-card flex flex-col gap-8 justify-center p-8 rounded-lg shadow-md w-96">
         <form
@@ -109,7 +111,10 @@ function AuthLayout({
           className={`min-h-12 ${error && 'text-app-error-text'} ${loading && 'text-app-muted'} text-center text-lg`}
           role="alert"
         >
-          {loading ? 'Loading...' : error || ''}
+          {loading
+            ? 'Loading...'
+            : error || ''
+          }
         </div>
       </div>
       <AuthorLink />
