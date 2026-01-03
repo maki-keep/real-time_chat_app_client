@@ -51,12 +51,12 @@ function AuthLayout({
 
   return (
     <Layout>
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-8 items-center text-center">
         <h1 className="font-semibold text-2xl">
           Real-Time Chat App
         </h1>
       </div>
-      <div className="bg-app-card flex flex-col gap-8 justify-center p-8 rounded-lg shadow-md w-96">
+      <div className="bg-app-card flex flex-col gap-8 justify-center max-w-96 overflow-auto p-8 rounded-lg shadow-md w-full">
         <form
           action="#"
           aria-busy={loading}
@@ -71,7 +71,7 @@ function AuthLayout({
           </label>
           <input
             autoComplete="username"
-            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
+            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted min-w-32 px-3 py-2 rounded-lg"
             disabled={loading}
             id="username"
             name="username"
@@ -89,7 +89,7 @@ function AuthLayout({
           </label>
           <input
             autoComplete={autoCompletePassword}
-            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted px-3 py-2 rounded-lg"
+            className="bg-app-btn border border-app-btn-border disabled:bg-app-muted-bg disabled:cursor-not-allowed disabled:text-app-muted min-w-32 px-3 py-2 rounded-lg"
             disabled={loading}
             id="password"
             name="password"
